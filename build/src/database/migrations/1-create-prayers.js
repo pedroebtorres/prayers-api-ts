@@ -1,28 +1,28 @@
-import { DataTypes, Model, QueryInterface } from 'sequelize';
-import { Prayer } from '../../types/Prayer';
-
-export default {
-    up(queryInterface: QueryInterface) {
-        return queryInterface.createTable<Model<Prayer>>('prayers', {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
+exports.default = {
+    up(queryInterface) {
+        return queryInterface.createTable('prayers', {
             id: {
-                type: DataTypes.INTEGER.UNSIGNED,
+                type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false,
             },
             prayerWhom: {
-                type: DataTypes.STRING,
+                type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
                 field: 'prayer_whom',
             },
             prayerReason: {
-                type: DataTypes.STRING,
+                type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
                 field: 'prayer_reason',
             },
         });
     },
-    down(queryInterface: QueryInterface) {
+    down(queryInterface) {
         return queryInterface.dropTable('prayers');
     }
 };

@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   # Serviço que irá rodar o node
-  app-prayers:
+  prayers-app:
     # Imagem base do container
     build: .
     # Usuário linux padrão do container, não é recomendado usar root
@@ -16,7 +16,7 @@ services:
     stdin_open: true
     # Substitui o comando padrão da imagem do node
     command: npm run dev
-    image: prayers-api:8.5
+    image: prayers-api:3.0
     # Restarta a imagem caso algo a faça parar
     restart: always
     # platform: linux/x86_64
