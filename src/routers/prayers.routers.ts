@@ -5,4 +5,6 @@ const prayersRouter = Router();
 
 prayersRouter.get('/prayers', prayersController.list);
 
+prayersRouter.post('/create', prayersController.create);
+
 export default prayersRouter;

@@ -2,7 +2,7 @@ import db from './index';
 import { Prayer } from '../../types/Prayer';
 import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
 
-type PrayerInputtableTypes = Optional<Prayer, 'id'>;
+export type PrayerInputtableTypes = Optional<Prayer, 'id'>;
 type PrayerSequelizeModelCreator = ModelDefined<Prayer, PrayerInputtableTypes>;
 export type PrayerSequelizeModel = Model<Prayer, PrayerInputtableTypes>;
 

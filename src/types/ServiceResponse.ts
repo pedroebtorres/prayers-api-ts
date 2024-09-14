@@ -1,4 +1,4 @@
-type ServiceResponseErrorType = 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND';
+type ServiceResponseErrorType = 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'INTERNAL_ERROR';
 
 export type ServiceResponseError = {
     status: ServiceResponseErrorType,
