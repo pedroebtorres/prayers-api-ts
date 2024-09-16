@@ -34,7 +34,18 @@ async function create(prayer: PrayerInputtableTypes): Promise<ServiceResponse<Pr
         }
     }
 }
+
+async function exclude(id: number): Promise<ServiceResponse<number>> {
+    const excludedPrayer = await PrayerModel.destroy({ where: { id: id } })
+    if (excludedPrayer === 1) {
+        return { status: 'SUCCESSFUL', data: id }
+    } else {
+        return { status: 'NOT_FOUND', data: { message: 'Prayer was not found' } };
+    }
+
+}
 export default {
     list,
     create,
+    exclude,
 }

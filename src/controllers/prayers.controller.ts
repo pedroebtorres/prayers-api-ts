@@ -18,7 +18,18 @@ async function create(req: Request, res: Response) {
     res.status(201).json(serviceResponse.data);
 }
 
+async function exclude(req: Request, res: Response) {
+    const { id } = req.params;
+    const serviceResponse = await prayersService.exclude(Number(id))
+
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+        res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+    res.status(200).json(serviceResponse.data);
+}
+
 export default {
     list,
     create,
+    exclude,
 }
