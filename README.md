@@ -4,23 +4,26 @@ API do Prayers Project feita em TypeScript
 
 ## Bônus - Rodando a aplicação localmente
 
-1. Para rodar a aplicação localmente, é necessário ter um banco de dados MySQL rodando. Caso nenhum esteja ativo, inicie um container MySQL no Docker com o seguinte comando:
+1. Ao rodar o comando abaixo, irá criar um banco de dados MySQL, configurado pelas variáveis de ambiente dentro do próprio docker-compose.yml
 
-    ```sh
-    docker run -p 3306:3306 --name prayers_db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=prayers_db -d mysql:8.0.32 mysqld
-    ```
+```sh
+docker-compose up -d --build
+```
 
-2. Crie o arquivo `backend/.env` com as variáveis de ambiente necessárias para o backend
+2. Para reiniciar/iniciar o banco de dados
 
-    > 💡 Dica: o arquivo `backend/env.example` já vem preenchido com os valores padrão do container gerado com o comando acima, ajuste para a sua instância conforme a necessidade.
+```sh
+npm run db:reset
+```
 
-3. Instale as dependências de backend, prepare o banco de dados e inicie o backend:
+### Funcionamento
 
-    ```sh
-    cd back-end
-    npm install
-    env $(cat .env) npx sequelize-cli db:create
-    env $(cat .env) npx sequelize-cli db:migrate
-    env $(cat .env) npx sequelize-cli db:seed:all
-    env $(cat .env) npm run dev
-    ```
+Qualquer pessoa pode acessar os pedidos de oração
+
+Qualquer pessoa pode cadastrar um pedido de oração
+
+É necessário login com user e senha para as ações abaixo
+
+Somente uma pessoa com um usuário cadastrado pode excluir um pedido de oração
+
+Somente uma pessoa com role de Pastor ou Official pode criar um novo usuário

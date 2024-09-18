@@ -15,11 +15,11 @@ const PrayerModel: PrayerSequelizeModelCreator = db.define('Prayer', {
     },
     prayerWhom: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
     },
     prayerReason: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
     }
 }, {
     tableName: 'prayers',
