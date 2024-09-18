@@ -34,7 +34,17 @@ async function create(prayer) {
         }
     }
 }
+async function exclude(id) {
+    const excludedPrayer = await prayer_model_1.default.destroy({ where: { id: id } });
+    if (excludedPrayer === 1) {
+        return { status: 'SUCCESSFUL', data: id };
+    }
+    else {
+        return { status: 'NOT_FOUND', data: { message: 'Prayer was not found' } };
+    }
+}
 exports.default = {
     list,
     create,
+    exclude,
 };

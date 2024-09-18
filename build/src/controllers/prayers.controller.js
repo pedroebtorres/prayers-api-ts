@@ -17,7 +17,16 @@ async function create(req, res) {
     }
     res.status(201).json(serviceResponse.data);
 }
+async function exclude(req, res) {
+    const { id } = req.params;
+    const serviceResponse = await prayers_service_1.default.exclude(Number(id));
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+        res.status((0, mapSattusHTTP_util_1.default)(serviceResponse.status)).json(serviceResponse.data);
+    }
+    res.status(200).json(serviceResponse.data);
+}
 exports.default = {
     list,
     create,
+    exclude,
 };

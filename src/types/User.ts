@@ -1,3 +1,5 @@
+import { Optional } from "sequelize";
+
 export type User = {
     id: number,
     user: string,
@@ -5,3 +7,5 @@ export type User = {
     password: string,
     role: string,
 };
+
+export type SafeUser = Optional<User, 'password'>;

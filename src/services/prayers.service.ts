@@ -1,5 +1,4 @@
 import PrayerModel, { PrayerInputtableTypes, PrayerSequelizeModel } from "../database/models/prayer.model";
-import { Prayer } from "../types/Prayer";
 import { ServiceResponse } from "../types/ServiceResponse";
 
 async function list(): Promise<ServiceResponse<PrayerSequelizeModel[]>> {

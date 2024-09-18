@@ -16,6 +16,12 @@ export default {
             name: 'Jakob Ingebrigtsen',
             password: bcrypt.hashSync('ingebrigtsen_pastor', SALT_ROUNDS),
             role: 'Official',
+        },
+        {
+            user: 'normal_1',
+            name: 'Conner Mantz',
+            password: bcrypt.hashSync('mantz_normal', SALT_ROUNDS),
+            role: 'Normal',
         }
         ], {});
     },

@@ -2,8 +2,13 @@ import { Request, Response, NextFunction } from 'express';
 import jwtUtil from '../utils/jwt.util';
 import UserModel from '../database/models/user.model';
 
-function extractToken(token: string): string {
-    return token.split(' ')[1];
+function extractToken(authorization: string): string {
+    return authorization.split(' ')[1];
+}
+
+async function decodeToken(authorization: string) {
+    const token = extractToken(authorization);
+    return await jwtUtil.verify(token);
 }
 
 async function validateToken(req: Request, res: Response, next: NextFunction) {
@@ -12,13 +17,16 @@ async function validateToken(req: Request, res: Response, next: NextFunction) {
     if (!authorization) {
         return res.status(401).json({ message: 'Token not found' });
     }
-    const token = extractToken(authorization);
 
     try {
-        const decoded = await jwtUtil.verify(token);
+        const decoded = await decodeToken(authorization);
+
         const user = await UserModel.findOne({ where: { user: decoded.user } });
 
-        if (!user) return res.status(401).json({ message: 'Invalid token' });
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid token, user not found' });
+        }
+        req.user = user;
 
         next();
     } catch (e) {
